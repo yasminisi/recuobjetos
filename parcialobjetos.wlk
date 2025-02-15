@@ -19,15 +19,17 @@ class Cocinero{
         self.agregarPreparacion(unaComida)
         //unaComida.calidadComida() tengo que cambiar la calidad de la comida
         recetasPreparadas.add(unaReceta)
-        self.adquirirExperienciaSegun(preparaciones) 
+        self.adquirirExperienciaSegun(preparaciones, unaReceta) 
     }
     method agregarPreparacion(comida){
         preparaciones.add(comida)
     }
     //Determinar experiencia:
-    method adquirirExperienciaSegun(unasPreparaciones){
-        
-        //experiencia = unaExperiencia
+    method adquirirExperienciaSegun(unasPreparaciones, unaReceta){
+        if(comida.calidadComida()=="pobre" || comida.calidadComida()=="superior"){
+            return 
+        }else 
+        return (unaReceta.cantidadDeIngredientes()) * (unaReceta.nivelDeDificultad())
     }
     method cambiarNivel(nuevoNivel){
         nivelDeAprendizaje = nuevoNivel
@@ -60,8 +62,12 @@ class Chef inherits Experimentado{
 class Receta{
     const property ingredientes = []
     var property nivelDeDificultad
-    var experienciaAportada
+    var experienciaAportada 
 
+
+    method cantidadDeIngredientes(){
+        return ingredientes.size()
+    }
     method experienciaAportadaSegun(preparaciones){
         //
     }
@@ -83,14 +89,5 @@ class Gourmet inherits Receta{
     }
 }
 object comida{
-    var property calidadComida = pobre//pobre, normal, superior, varia
-
-}
-object pobre{
-    
-}
-object normal{
-}
-object superior{
-    //Cocinero.cambiarNivel(Chef)
+    var property calidadComida = "pobre"//pobre, normal, superior, varia
 }
