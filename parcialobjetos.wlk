@@ -35,7 +35,7 @@ class Cocinero{
         nivelDeAprendizaje = nuevoNivel
     }
     method superaNivelDeAprendizaje(){
-        self.experiencia() 
+        return self.experiencia() > 100 
     }
 }
 
